@@ -3,31 +3,34 @@
 import { ArrowUpRight, GitBranch, Link as LinkIcon, Mail, Menu, X, Download, MapPin, Sparkles, BrainCircuit } from 'lucide-react'
 import { useState } from 'react'
 
-const projects = [
-  {
-    number: '01',
-    title: 'Neural Notes',
-    description: 'An AI-powered knowledge workspace that turns scattered notes into a searchable, connected second brain.',
-    tags: ['Next.js', 'Python', 'OpenAI', 'Postgres'],
-    type: 'AI / PRODUCT',
-    gradient: 'from-violet-500/20 via-indigo-500/5 to-transparent',
-  },
-  {
-    number: '02',
-    title: 'Shipshape',
-    description: 'A calm, focused deployment dashboard for small teams shipping production software with confidence.',
-    tags: ['React', 'TypeScript', 'FastAPI', 'AWS'],
-    type: 'FULL STACK',
-    gradient: 'from-cyan-400/20 via-blue-500/5 to-transparent',
-  },
-  {
-    number: '03',
-    title: 'Query Studio',
-    description: 'A visual SQL playground built for exploring large datasets without losing the thread of your thinking.',
-    tags: ['TypeScript', 'SQL', 'AWS', 'UX'],
-    type: 'DATA TOOL',
-    gradient: 'from-amber-300/20 via-orange-400/5 to-transparent',
-  },
+const categories = ['All', 'Full Stack Development', 'AI / Machine Learning', 'Generative AI', 'Web Development', 'DevOps'] as const
+
+type Project = {
+  number: string
+  title: string
+  description: string
+  tags: string[]
+  category: (typeof categories)[number][]
+  type: string
+  github: string
+  demo?: string
+  gradient: string
+}
+
+const projects: Project[] = [
+  { number: '01', title: 'NexaMind AI', description: 'An AI-focused application for exploring intelligent workflows and practical product experiences.', tags: ['Python', 'AI', 'JavaScript'], category: ['AI / Machine Learning', 'Generative AI'], type: 'AI / MACHINE LEARNING', github: 'https://github.com/sandeep-rathod-2004/nexamind-ai', gradient: 'from-violet-500/20 via-indigo-500/5 to-transparent' },
+  { number: '02', title: 'AgentInvoiceAI', description: 'An invoice workflow project centered on agentic automation and structured financial data.', tags: ['Python', 'AI Agents', 'Automation'], category: ['AI / Machine Learning', 'Generative AI'], type: 'AGENTIC AI', github: 'https://github.com/sandeep-rathod-2004/AgentInvoiceAI', gradient: 'from-fuchsia-500/20 via-violet-500/5 to-transparent' },
+  { number: '03', title: 'AI Invoice Audit Agent', description: 'An AI-assisted invoice auditing project designed to help surface issues in business documents.', tags: ['Python', 'AI', 'Document Processing'], category: ['AI / Machine Learning', 'Generative AI'], type: 'AI / AUTOMATION', github: 'https://github.com/sandeep-rathod-2004/ai-invoice-audit-agent', gradient: 'from-amber-300/20 via-orange-400/5 to-transparent' },
+  { number: '04', title: 'MERN Gemini Chat', description: 'A full stack chat experience integrating the MERN ecosystem with Google Gemini capabilities.', tags: ['MongoDB', 'Express', 'React', 'Node.js'], category: ['Full Stack Development', 'Generative AI'], type: 'FULL STACK', github: 'https://github.com/sandeep-rathod-2004/mern-gemini-chat', gradient: 'from-cyan-400/20 via-blue-500/5 to-transparent' },
+  { number: '05', title: 'Lead Management System', description: 'A system for organizing, tracking, and managing sales leads through a focused web interface.', tags: ['React', 'Node.js', 'MongoDB'], category: ['Full Stack Development', 'Web Development'], type: 'FULL STACK', github: 'https://github.com/sandeep-rathod-2004/LeadManagementSystem', gradient: 'from-emerald-400/20 via-teal-500/5 to-transparent' },
+  { number: '06', title: 'TexConnect', description: 'A web project built around connecting people through a clear and approachable product experience.', tags: ['React', 'JavaScript', 'CSS'], category: ['Web Development'], type: 'WEB DEVELOPMENT', github: 'https://github.com/sandeep-rathod-2004/TexConnect', gradient: 'from-sky-400/20 via-cyan-500/5 to-transparent' },
+  { number: '07', title: 'Crop Recommendation System', description: 'A machine learning project that recommends suitable crops from agricultural input data.', tags: ['Python', 'Machine Learning', 'Jupyter'], category: ['AI / Machine Learning'], type: 'MACHINE LEARNING', github: 'https://github.com/sandeep-rathod-2004/crop_recommendation_project', gradient: 'from-lime-400/20 via-green-500/5 to-transparent' },
+  { number: '08', title: 'Document React Model', description: 'A React-based document modeling project focused on structured content and reusable UI.', tags: ['React', 'JavaScript', 'HTML'], category: ['Web Development'], type: 'WEB DEVELOPMENT', github: 'https://github.com/sandeep-rathod-2004/document_react_model', gradient: 'from-blue-400/20 via-indigo-500/5 to-transparent' },
+  { number: '09', title: 'Elevate', description: 'A web development project focused on presenting a polished, purposeful digital experience.', tags: ['HTML', 'CSS', 'JavaScript'], category: ['Web Development'], type: 'WEB DEVELOPMENT', github: 'https://github.com/sandeep-rathod-2004', gradient: 'from-pink-400/20 via-rose-500/5 to-transparent' },
+  { number: '10', title: 'Tea Macha', description: 'A tea-focused web experience with a warm visual direction and accessible browsing flow.', tags: ['HTML', 'CSS', 'JavaScript'], category: ['Web Development'], type: 'WEB DEVELOPMENT', github: 'https://github.com/sandeep-rathod-2004', gradient: 'from-yellow-400/20 via-amber-500/5 to-transparent' },
+  { number: '11', title: 'Real Estate Premium', description: 'A premium real estate interface designed around clear property discovery and presentation.', tags: ['HTML', 'CSS', 'JavaScript'], category: ['Web Development'], type: 'WEB DEVELOPMENT', github: 'https://github.com/sandeep-rathod-2004', gradient: 'from-stone-400/20 via-zinc-500/5 to-transparent' },
+  { number: '12', title: 'LuxeSalon Pro', description: 'A polished salon web concept with a considered layout for services and brand storytelling.', tags: ['HTML', 'CSS', 'JavaScript'], category: ['Web Development'], type: 'WEB DEVELOPMENT', github: 'https://github.com/sandeep-rathod-2004', gradient: 'from-rose-400/20 via-pink-500/5 to-transparent' },
+  { number: '13', title: 'Jagari Tea Spot', description: 'A welcoming tea spot web experience built with a strong sense of place and visual identity.', tags: ['HTML', 'CSS', 'JavaScript'], category: ['Web Development'], type: 'WEB DEVELOPMENT', github: 'https://github.com/sandeep-rathod-2004', gradient: 'from-orange-400/20 via-yellow-500/5 to-transparent' },
 ]
 
 const skills = ['Python', 'React', 'TypeScript', 'Next.js', 'FastAPI', 'SQL', 'AWS']
@@ -36,7 +39,7 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
   return <p className="section-label"><span />{children}</p>
 }
 
-function ProjectCard({ project }: { project: (typeof projects)[number] }) {
+function ProjectCard({ project }: { project: Project }) {
   return (
     <article className="project-card group">
       <div className={`project-visual bg-gradient-to-br ${project.gradient}`}>
@@ -56,7 +59,7 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
           <ArrowUpRight className="mt-1 shrink-0 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" size={19} />
         </div>
         <div className="tag-list">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
-        <div className="project-links"><a href="https://github.com" target="_blank" rel="noreferrer"><GitBranch size={15} /> GitHub</a><a href="https://vercel.com" target="_blank" rel="noreferrer">Live demo <ArrowUpRight size={14} /></a></div>
+        <div className="project-links"><a href={project.github} target="_blank" rel="noreferrer"><GitBranch size={15} /> GitHub</a>{project.demo ? <a href={project.demo} target="_blank" rel="noreferrer">Live demo <ArrowUpRight size={14} /></a> : <span className="source-label">Source Code Available</span>}</div>
       </div>
     </article>
   )
@@ -64,7 +67,9 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
 
 export default function Page() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [activeCategory, setActiveCategory] = useState<(typeof categories)[number]>('All')
   const closeMenu = () => setMenuOpen(false)
+  const visibleProjects = activeCategory === 'All' ? projects : projects.filter((project) => project.category.includes(activeCategory))
 
   return (
     <main>
@@ -96,7 +101,7 @@ export default function Page() {
         <div className="about-grid"><h2>Good software is<br /><span>felt,</span> not noticed.</h2><div className="about-copy"><p>I care about the details that make products feel inevitable — clear interfaces, dependable systems, and thoughtful interactions.</p><p>With a foundation in full stack development and a growing focus on AI engineering, I like working across the entire product surface. From the first idea to the last pixel and production deploy.</p><div className="location"><MapPin size={15} /> Based in India · Working worldwide</div></div></div>
       </section>
 
-      <section id="work" className="section-wrap work-section"><div className="section-heading"><SectionLabel>02 / Selected work</SectionLabel><p>A few things I&apos;ve built<br />with intent.</p></div><div className="projects-grid">{projects.map((project) => <ProjectCard key={project.title} project={project} />)}</div></section>
+      <section id="work" className="section-wrap work-section"><div className="section-heading"><SectionLabel>02 / Selected work</SectionLabel><p>Real repositories, honest details<br />and source code you can explore.</p></div><div className="project-filters" role="tablist" aria-label="Project categories">{categories.map((category) => <button key={category} className={activeCategory === category ? 'is-active' : ''} onClick={() => setActiveCategory(category)} role="tab" aria-selected={activeCategory === category}>{category}</button>)}</div><div className="projects-grid">{visibleProjects.map((project) => <ProjectCard key={project.title} project={project} />)}</div></section>
 
       <section className="skills-band"><div className="section-wrap skills-inner"><div><SectionLabel>03 / Toolkit</SectionLabel><h2>Tools for turning<br /><em>ideas into impact.</em></h2></div><div className="skills-list">{skills.map((skill, index) => <div className="skill" key={skill}><span>0{index + 1}</span>{skill}</div>)}</div></div></section>
 
